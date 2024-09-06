@@ -31,7 +31,7 @@ public class VacationController {
     public BigDecimal calculateVacationPay(@RequestBody VacationRequest request) {
         logger.info("Calculating vacation pay for request: {}", request);
         BigDecimal vacationPay = vacationService.calculateVacationPay(request);
-        logger.info("Vacation pay calculated: {}", vacationPay);
+        logger.info("Vacation pay calculateed: {}", vacationPay);
         return vacationPay;
     }
 
