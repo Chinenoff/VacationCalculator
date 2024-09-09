@@ -12,4 +12,7 @@ public class VacationRequest {
     private BigDecimal averageSalary;
     private int vacationDays;
     private LocalDate startDate;
+
 }
+
+
