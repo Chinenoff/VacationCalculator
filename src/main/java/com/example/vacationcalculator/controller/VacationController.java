@@ -34,32 +34,17 @@ public class VacationController {
     public BigDecimal calculate(
             @RequestParam("averageSalary") BigDecimal averageSalary,
             @RequestParam("vacationDays") int vacationDays,
-            @RequestParam(value = "startDate", required = false) LocalDate startDate)
-    {
+            @RequestParam(value = "startDate", required = false) String startDateStr) {
 
-        BigDecimal vacationPay;
-        VacationRequest request = new VacationRequest(averageSalary, vacationDays, startDate);
-
-        if (startDate != null) {
-            // Расчет отпускных с учетом выходных и праздников
+        if (startDateStr == null) {
+            VacationRequest request = new VacationRequest(averageSalary, vacationDays, null);
             logger.info("Calculating vacation pay for request: {}", request);
-            vacationPay = vacationService.calculateVacationPayWithHolidays(request);
-            logger.info("Vacation pay calculated: {}", vacationPay);
-            return vacationPay;
+            return vacationService.calculateVacationPay(request);
         } else {
-            // Расчет отпускных без учета выходных
+            VacationRequest request = new VacationRequest(averageSalary, vacationDays, LocalDate.parse(startDateStr));
             logger.info("Calculating vacation pay for request: {}", request);
-            vacationPay = vacationService.calculateVacationPay(request);
-            logger.info("Vacation pay calculateed: {}", vacationPay);
-            return vacationPay;
+            return vacationService.calculateVacationPayWithHolidays(request);
         }
-    }
-
-    @GetMapping("/hello")
-    @Operation(summary = "Hello World", description = "Simple endpoint for testing")
-    @ApiResponse(responseCode = "200", description = "Returns 'Hello World!'")
-    public String helloWorld() {
-        return "Hello World!";
     }
 
 }
