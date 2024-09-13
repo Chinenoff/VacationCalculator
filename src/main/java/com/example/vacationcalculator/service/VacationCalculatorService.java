@@ -4,6 +4,6 @@ import com.example.vacationcalculator.model.VacationRequest;
 
 import java.math.BigDecimal;
 
-public interface VacationCalculator {
+public interface VacationCalculatorService {
     BigDecimal calculateVacationPay(VacationRequest request);
 }

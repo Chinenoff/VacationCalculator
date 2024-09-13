@@ -1,7 +1,7 @@
 package com.example.vacationcalculator.utils;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+@Service
 public class HolidayCalculator {
 
     private final List<String> holidays;
@@ -29,8 +29,5 @@ public class HolidayCalculator {
                 DayOfWeek.SUNDAY.equals(date.getDayOfWeek());
     }
 
-    public List<String> getHolidayDates() {
-        return holidays;
-    }
 }
 
